@@ -32,14 +32,14 @@ namespace Artifact
         bool isTrigger() const;
         void enableTriggerState();
         void disableTriggerState();
-        uint16 getLayer();
+        uint16 getLayer() const;
         void setLayer(uint16 a_Layer);
-        uint16 getMask();
+        uint16 getMask() const;
         void setMask(uint16 a_Mask);
-
     private:
         void attachFixture();
         void refreshFixtureData();
         void onPrePhysicsUpdate();
+        bool hasChanged() const;
     };
 }
