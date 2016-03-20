@@ -44,6 +44,10 @@ namespace Artifact
     {
     };
 
+    class AwakeMessage : public Message
+    {
+    };
+
     class World
     {
     protected:
@@ -59,6 +63,7 @@ namespace Artifact
         World(GameTime& a_GameTime, Game* a_CurrentGame);
         virtual ~World() = default;
 
+        void awake();
         void update();
         void fixedUpdate();
         void processEvents(std::vector<SDL_Event>& a_Events);

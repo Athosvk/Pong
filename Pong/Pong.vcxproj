@@ -161,6 +161,7 @@
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="MovementCircleComponent.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="Paddle\Paddle.cpp" />
@@ -170,6 +171,7 @@
   <ItemGroup>
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="MovementCircleComponent.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="Paddle\Paddle.h" />
