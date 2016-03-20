@@ -14,8 +14,8 @@ Paddle::Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
 
     m_SpriteRenderer = addComponent<Artifact::SpriteRenderer>();
     m_SpriteRenderer->setTexture(Artifact::ResourceManager::getTexture("Assets/Textures/Paddle.png"));
-    m_SpriteRenderer->Width = 0.2f;
-    m_SpriteRenderer->Height = 1.0f;
+    m_SpriteRenderer->Width = 1.0f;
+    m_SpriteRenderer->Height = 0.2f;
 }
 
 void Paddle::setColor(Artifact::Color a_Color)

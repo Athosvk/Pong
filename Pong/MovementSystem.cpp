@@ -55,6 +55,7 @@ void MovementSystem::updatePosition(MovementComponent* a_Movement, MovementCircl
     auto position = Artifact::MathHelper::rotate(transform->getPosition(), angularDisplacement,
         a_Circle->getComponent<Artifact::Transform>()->getPosition());
     transform->setPosition(position);
+    transform->setRotation(transform->getRotation() + angularDisplacement);
 }
 
 MovementCircleComponent* MovementSystem::getMovementCircle() const
