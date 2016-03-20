@@ -4,7 +4,7 @@
 class MovementComponent : public Artifact::Component
 {
 public:
-    float Speed = 0.1f;
+    float Speed = 0.5f;
     enum class EDirection
     {
         Left = -1,
