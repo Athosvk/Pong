@@ -7,6 +7,7 @@
 #include "Paddle/Paddle.h"
 #include "Paddle/PlayerInputComponent.h"
 #include "MovementCircleComponent.h"
+#include "Ball.h"
 
 GameWorld::GameWorld(Artifact::GameTime& a_GameTime, Artifact::Game* a_CurrentGame)
     : World(a_GameTime, a_CurrentGame)
@@ -17,6 +18,7 @@ GameWorld::GameWorld(Artifact::GameTime& a_GameTime, Artifact::Game* a_CurrentGa
 
     auto movementCircle = m_EntitySystem.createEntity().addComponent<MovementCircleComponent>();
     movementCircle->Radius = 3.0f;
+    m_EntitySystem.createEntity<Ball>();
 }
 
 void GameWorld::initialisePlayers()
