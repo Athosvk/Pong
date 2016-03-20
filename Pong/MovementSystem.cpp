@@ -25,8 +25,8 @@ void MovementSystem::updatePosition()
         if(movementComponent->Direction != MovementComponent::EDirection::None)
         {
             auto transform = movementComponent->getComponent<Artifact::Transform>();
-            transform->setPosition(transform->getPosition() + glm::vec2(static_cast<float>(movementComponent->Direction) *
-                movementComponent->Speed));
+            auto displacement = glm::vec2(0.0f, static_cast<float>(movementComponent->Direction) * movementComponent->Speed);
+            transform->setPosition(transform->getPosition() + displacement);
         }
     }
 }
