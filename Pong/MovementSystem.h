@@ -8,5 +8,5 @@ public:
 
     virtual void registerListeners();
 private:
-    void updatePosition();
+    void updatePositions();
 };

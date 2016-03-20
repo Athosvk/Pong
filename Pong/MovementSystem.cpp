@@ -14,11 +14,11 @@ void MovementSystem::registerListeners()
 {
     m_MessagingSystem.registerListener<Artifact::FixedUpdateMessage>([this](const Artifact::Message*)
     {
-        updatePosition();
+        updatePositions();
     });
 }
 
-void MovementSystem::updatePosition()
+void MovementSystem::updatePositions()
 {
     for(auto movementComponent : m_EntitySystem.getComponentsOfType<MovementComponent>())
     {
