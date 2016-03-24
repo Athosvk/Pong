@@ -7,6 +7,7 @@
 #include "Paddle.h"
 #include "PlayerInputComponent.h"
 #include "../MovementComponent.h"
+#include "../TagComponent.h"
 
 Paddle::Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
     : GameObject(a_ID, a_EntitySystem)
@@ -24,6 +25,9 @@ Paddle::Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
     collider->enableTriggerState();
     auto rigidBody = addComponent<Artifact::RigidBody2D>();
     rigidBody->setGravityScale(0.0f);
+
+    auto tag = addComponent<TagComponent>();
+    tag->Tag = "Paddle";
 }
 
 void Paddle::setColor(Artifact::Color a_Color)

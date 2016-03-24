@@ -168,6 +168,7 @@
     <ClCompile Include="Paddle\Paddle.cpp" />
     <ClCompile Include="Paddle\PlayerInputComponent.cpp" />
     <ClCompile Include="Paddle\PlayerInputSystem.cpp" />
+    <ClCompile Include="TagComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Paddle\Paddle.h" />
     <ClInclude Include="Paddle\PlayerInputComponent.h" />
     <ClInclude Include="Paddle\PlayerInputSystem.h" />
+    <ClInclude Include="TagComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

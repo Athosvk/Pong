@@ -5,11 +5,15 @@
 #include <Artifact/Core/EntitySystem.h>
 
 #include "Ball.h"
+#include "TagComponent.h"
 
 Ball::Ball(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
     : GameObject(a_ID, a_EntitySystem)
 {
     const auto Dimensions = glm::vec2(0.1f, 0.1f);
+
+    auto tag = addComponent<TagComponent>();
+    tag->Tag = "Ball";
 
     auto rigidBody = addComponent<Artifact::RigidBody2D>();
     rigidBody->setGravityScale(0.0f);
