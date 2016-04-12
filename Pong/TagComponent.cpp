@@ -1,5 +1,6 @@
 #include "TagComponent.h"
 
-TagComponent::TagComponent()
+TagComponent::TagComponent(Artifact::GameObject a_GameObject)
+	: Component(a_GameObject)
 {
 }

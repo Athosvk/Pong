@@ -1,12 +1,13 @@
 #pragma once
 #include <string>
+#include <Artifact/Core/Component.h>
 
-class TagComponent
+class TagComponent : public Artifact::Component
 {
 public:
     std::string Tag = "";
 
 public:
-    TagComponent();
+    TagComponent(Artifact::GameObject a_GameObject);
 };
 

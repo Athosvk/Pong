@@ -10,6 +10,7 @@ namespace Artifact
 
     protected:
         Component(GameObject a_GameObject);
+	public:
         ~Component() = default;
 
     public:
