@@ -8,6 +8,7 @@
 #include "PlayerInputComponent.h"
 #include "../MovementComponent.h"
 #include "../TagComponent.h"
+#include "../ReflectComponent.h"
 
 Paddle::Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
     : GameObject(a_ID, a_EntitySystem)
@@ -28,6 +29,7 @@ Paddle::Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
 
     auto tag = addComponent<TagComponent>();
     tag->Tag = "Paddle";
+	addComponent<ReflectComponent>();
 }
 
 void Paddle::setColor(Artifact::Color a_Color)

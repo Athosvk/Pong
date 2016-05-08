@@ -8,12 +8,14 @@
 #include "Paddle/PlayerInputComponent.h"
 #include "MovementCircleComponent.h"
 #include "Ball.h"
+#include "ReflectSystem.h"
 
 GameWorld::GameWorld(Artifact::GameTime& a_GameTime, Artifact::Game* a_CurrentGame)
     : World(a_GameTime, a_CurrentGame)
 {
     addSystem<PlayerInputSystem>();
     addSystem<MovementSystem>();
+	addSystem<ReflectSystem>();
     initialisePlayers();
 
     auto movementCircle = m_EntitySystem.createEntity().addComponent<MovementCircleComponent>();

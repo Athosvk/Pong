@@ -17,7 +17,7 @@ Ball::Ball(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
 
     auto rigidBody = addComponent<Artifact::RigidBody2D>();
     rigidBody->setGravityScale(0.0f);
-    rigidBody->setVelocity(glm::vec2(0.0f, -2.0f));
+    rigidBody->setVelocity(glm::vec2(0.0f, -0.5f));
 
     auto collider = addComponent<Artifact::BoxCollider2D>();
     collider->enableTriggerState();
