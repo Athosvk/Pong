@@ -48,7 +48,8 @@ void MovementSystem::updatePositions() const
     }
 }
 
-void MovementSystem::updatePosition(MovementComponent* a_Movement, MovementCircleComponent* a_Circle) const
+void MovementSystem::updatePosition(Artifact::ComponentHandle<MovementComponent> a_Movement,
+	Artifact::ComponentHandle<MovementCircleComponent> a_Circle) const
 {
     auto transform = a_Movement->getComponent<Artifact::Transform>();
     auto angularDisplacement = static_cast<float>(a_Movement->Direction) * a_Movement->Speed;
@@ -58,7 +59,7 @@ void MovementSystem::updatePosition(MovementComponent* a_Movement, MovementCircl
     transform->setRotation(transform->getRotation() + angularDisplacement);
 }
 
-MovementCircleComponent* MovementSystem::getMovementCircle() const
+Artifact::ComponentHandle<MovementCircleComponent> MovementSystem::getMovementCircle() const
 {
     return m_EntitySystem.getComponentsOfType<MovementCircleComponent>()[0];
 }

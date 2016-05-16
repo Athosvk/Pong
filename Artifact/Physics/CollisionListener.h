@@ -5,6 +5,8 @@
 #include "../Core/MessageQueue.h"
 #include "CollisionMessages.h"
 #include "BoxCollider2D.h"
+#include "../Core/GameObject.h"
+#include "../Core/EntitySystem.h"
 
 namespace Artifact
 {
@@ -24,8 +26,10 @@ namespace Artifact
         template<typename TTriggerMessageType, typename TCollisionMessageType>
         void storeCollisionMessage(b2Contact* a_Contact)
         {
-            auto collider1 = static_cast<BoxCollider2D*>(a_Contact->GetFixtureA()->GetUserData());
-            auto collider2 = static_cast<BoxCollider2D*>(a_Contact->GetFixtureB()->GetUserData());
+            auto collider1 = static_cast<GameObject*>(a_Contact->GetFixtureA()->
+				GetUserData())->getComponent<BoxCollider2D>();
+            auto collider2 = static_cast<GameObject*>(a_Contact->GetFixtureB()->
+				GetUserData())->getComponent<BoxCollider2D>();
             if(collider1->isTrigger() || collider2->isTrigger())
             {
                 m_CollisionQueue.enqueue<TTriggerMessageType>(collider1->getGameObject(), collider1, collider2);

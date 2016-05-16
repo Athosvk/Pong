@@ -11,12 +11,12 @@
 #include "../ReflectComponent.h"
 
 Paddle::Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
-    : GameObject(a_ID, a_EntitySystem)
+    : GameObject(a_ID, a_EntitySystem),
+	m_SpriteRenderer(addComponent<Artifact::SpriteRenderer>())
 {
     addComponent<PlayerInputComponent>();
     addComponent<MovementComponent>();
 
-    m_SpriteRenderer = addComponent<Artifact::SpriteRenderer>();
     m_SpriteRenderer->setTexture(Artifact::ResourceManager::getTexture("Assets/Textures/Paddle.png"));
     m_SpriteRenderer->Width = 1.0f;
     m_SpriteRenderer->Height = 0.2f;
