@@ -3,6 +3,7 @@
 #include <Artifact/IO/ResourceManager.h>
 #include <Artifact/Physics/BoxCollider2D.h>
 #include <Artifact/Physics/RigidBody2D.h>
+#include <Artifact/Rendering/ParticleEmitter.h>
 
 #include "Paddle.h"
 #include "PlayerInputComponent.h"
@@ -30,6 +31,7 @@ Paddle::Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
     auto tag = addComponent<TagComponent>();
     tag->Tag = "Paddle";
 	addComponent<ReflectComponent>();
+	addComponent<Artifact::ParticleEmitter>();
 }
 
 void Paddle::setColor(Artifact::Color a_Color)
