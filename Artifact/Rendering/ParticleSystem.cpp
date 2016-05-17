@@ -1,7 +1,7 @@
 #include "ParticleSystem.h"
 #include "RenderMessage.h"
 #include "../Core/World.h"
-#include "ParticleEmmitter.h"
+#include "ParticleEmitter.h"
 
 namespace Artifact
 {

@@ -6,7 +6,7 @@ namespace Artifact
 {
 	/// <summary> A particle emmitter, capable of emitting collections of particles </summary>
 	/// <seealso cref="Component" />
-	class ParticleEmmitter : public Component
+	class ParticleEmitter : public Component
 	{
 	private:		
 		/// <summary> A single particle instance for drawing </summary>
@@ -29,13 +29,15 @@ namespace Artifact
 		/// <summary> The color of the particles when they are spawned </summary>
 		Color StartColor = Color::White;		
 		/// <summary> The color of the particles when they are at the end of lifetime </summary>
-		Color EndColor = Color(1.0f, 1.0f, 1.0f, 0.0f);
+		Color EndColor = Color(1.0f, 1.0f, 1.0f, 0.0f);		
+		/// <summary>The time the simluation has been running for this particle emitter </summary>
+		float SimulationTime;
 
 	public:		
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ParticleEmmitter"/> class.
 		/// </summary>
 		/// <param name="a_GameObject">The GameObject this component belongs to </param>
-		ParticleEmmitter(GameObject a_GameObject);
+		ParticleEmitter(GameObject a_GameObject);
 	};
 }
