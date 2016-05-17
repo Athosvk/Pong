@@ -155,7 +155,7 @@
     <ClCompile Include="Rendering\ParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\ParticleEmmitter.cpp">
+    <ClCompile Include="Rendering\ParticleEmitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -331,7 +331,7 @@
     <ClInclude Include="Rendering\ParticleSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\ParticleEmmitter.h">
+    <ClInclude Include="Rendering\ParticleEmitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
