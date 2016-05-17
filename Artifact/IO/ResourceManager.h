@@ -11,17 +11,17 @@ namespace Artifact
     class ResourceManager
     {
     private:
-        static TextureCache s_TextureCache;
-        static ResourceCache<SpriteFont> s_FontCache;
-        static ResourceCache<Sound> s_SoundCache;
+        TextureCache m_TextureCache;
+        ResourceCache<SpriteFont> m_FontCache;
+        ResourceCache<Sound> m_SoundCache;
 
-    public:
-        ResourceManager() = delete;
-        ~ResourceManager() = delete;
-        ResourceManager(const ResourceManager& a_ResourceManager) = delete;
+    private:
+        ResourceManager() = default;
 
-        static GLTexture* getTexture(const std::string& a_FilePath);
-        static SpriteFont* getFont(const std::string& a_FilePath);
-        static Sound* getSound(const std::string& a_FilePath);
+	public:
+		static ResourceManager& getInstance();
+        GLTexture* getTexture(const std::string& a_FilePath);
+        SpriteFont* getFont(const std::string& a_FilePath);
+        Sound* getSound(const std::string& a_FilePath);
     };
 }
