@@ -19,11 +19,14 @@ namespace Artifact
 		m_MessagingSystem.registerListener<FixedUpdateMessage>([this](const Message* a_Message)
 		{
 
-		}
+		});
 	}
 
 	void ParticleSystem::render()
 	{
-		for(auto particleEmmitter : m_EntitySystem.getComponentsOfType<)
+	}
+
+	void ParticleSystem::integrateAttributes() const
+	{
 	}
 }
