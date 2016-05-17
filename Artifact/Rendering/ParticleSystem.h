@@ -2,6 +2,7 @@
 #include "../Core/System.h"
 #include "SpriteBatch.h"
 
+
 namespace Artifact
 {
 	/// <summary> The system drawing the particles of each particle emmitter </summary>
@@ -22,8 +23,13 @@ namespace Artifact
 	private:
 		/// <summary>Renders the particles of each particle emitters </summary>
 		void render();
+		
+		/// <summary>Updates the particle simulations</summary>
+		/// <param name="a_DeltaTime">The tiem since hte last update</param>
+		void updateParticleSimulations(float a_DeltaTime) const;
 
 		/// <summary>Integrates the attributes of each particle using their corresponding emitter </summary>
-		void integrateAttributes() const;
+		void integrateAttributes(ComponentHandle<ParticleEmitter> a_ParticleEmitter) const;
+		void update();
 	};
 }

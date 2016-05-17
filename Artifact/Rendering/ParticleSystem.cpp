@@ -16,9 +16,9 @@ namespace Artifact
 		{
 			render();
 		});
-		m_MessagingSystem.registerListener<FixedUpdateMessage>([this](const Message* a_Message)
+		m_MessagingSystem.registerListener<UpdateMessage>([this](const Message* a_Message)
 		{
-
+			updateParticleSimulations(static_cast<const UpdateMessage*>(a_Message)->getGameTime().getDeltaTime());
 		});
 	}
 
@@ -26,7 +26,20 @@ namespace Artifact
 	{
 	}
 
-	void ParticleSystem::integrateAttributes() const
+	void ParticleSystem::updateParticleSimulations(float a_DeltaTime) const
 	{
+		for(auto particleEmitter : m_EntitySystem.getComponentsOfType<ParticleEmitter>())
+		{
+			integrateAttributes(particleEmitter);
+			
+		}
+	}
+
+	void ParticleSystem::integrateAttributes(ComponentHandle<ParticleEmitter> a_ParticleEmitter) const
+	{
+		for(size_t i = 0; i < a_ParticleEmitter->getFirstInactiveIndex(); i++)
+		{
+
+		}
 	}
 }
