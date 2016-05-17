@@ -17,7 +17,7 @@ Paddle::Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
     addComponent<PlayerInputComponent>();
     addComponent<MovementComponent>();
 
-    m_SpriteRenderer->setTexture(Artifact::ResourceManager::getTexture("Assets/Textures/Paddle.png"));
+    m_SpriteRenderer->setTexture(Artifact::ResourceManager::getInstance().getTexture("Assets/Textures/Paddle.png"));
     m_SpriteRenderer->Width = 1.0f;
     m_SpriteRenderer->Height = 0.2f;
 
