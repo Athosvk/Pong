@@ -21,16 +21,16 @@ void ReflectSystem::registerListeners()
 	});
 }
 
-void ReflectSystem::reflect(Artifact::RigidBody2D* a_RigidBody)
+void ReflectSystem::reflect(Artifact::ComponentHandle<Artifact::RigidBody2D> a_RigidBody)
 {
 	a_RigidBody->setVelocity(a_RigidBody->getVelocity() * -1.05f);
 }
 
-void ReflectSystem::onReflectComponentAdded(ReflectComponent* a_ReflectComponent)
+void ReflectSystem::onReflectComponentAdded(Artifact::ComponentHandle<ReflectComponent> a_ReflectComponent)
 {
 	m_MessagingSystem.registerListener<Artifact::TriggerEnter2DMessage>([this](const Artifact::Message* a_Message)
 	{
-		TagComponent* tag = static_cast<const Artifact::TriggerEnter2DMessage*>(a_Message)->
+		Artifact::ComponentHandle<TagComponent> tag = static_cast<const Artifact::TriggerEnter2DMessage*>(a_Message)->
 			getOther()->getComponent<TagComponent>();
 		if(tag != nullptr && tag->Tag == "Ball")
 		{

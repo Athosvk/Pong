@@ -10,20 +10,18 @@ namespace Artifact
 
     protected:
         Component(GameObject a_GameObject);
-	public:
-        ~Component() = default;
 
     public:
-        template<typename T>
-        T* getComponent() const
+        template<typename TComponentType>
+        ComponentHandle<TComponentType> getComponent() const
         {
-            return m_GameObject.getComponent<T>();
+            return m_GameObject.getComponent<TComponentType>();
         }
 
-        template<typename T>
-        T* addComponent()
+        template<typename TComponentType>
+        ComponentHandle<TComponentType> addComponent()
         {
-            return m_GameObject.addComponent<T>();
+            return m_GameObject.addComponent<TComponentType>();
         }
 
         GameObject getGameObject() const;

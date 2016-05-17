@@ -1,6 +1,7 @@
 #pragma once
 #include <Box2D/Box2D.h>
 #include <glm\glm.hpp>
+#include <memory>
 
 #include "../Core/Component.h"
 
@@ -21,7 +22,9 @@ namespace Artifact
         glm::vec2 m_Dimensions = glm::vec2(0, 0);
         b2FixtureDef m_FixtureDefinition;
         uint16 m_Layer = 0;
-        uint16 m_Mask = 0;
+        uint16 m_Mask = 0;		
+		/// <summary> A handle to the GameObject, so that it can be stored as userdata in the b2Body </summary>
+		std::shared_ptr<GameObject> m_GameObjectHandle;
 
     public:
         BoxCollider2D(GameObject a_GameObject);
@@ -36,7 +39,6 @@ namespace Artifact
         void setLayer(uint16 a_Layer);
         uint16 getMask();
         void setMask(uint16 a_Mask);
-
     private:
         void attachFixture();
         void refreshFixtureData();

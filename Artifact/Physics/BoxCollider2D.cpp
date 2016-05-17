@@ -8,15 +8,16 @@
 namespace Artifact
 {
     BoxCollider2D::BoxCollider2D(GameObject a_GameObject)
-        : Component(a_GameObject)
+        : Component(a_GameObject),
+		m_GameObjectHandle(std::make_shared<GameObject>(a_GameObject))
     {
-        m_FixtureDefinition.userData = this;
+        m_FixtureDefinition.userData = m_GameObjectHandle.get();
         m_FixtureDefinition.density = 1.0f;
     }
 
     BoxCollider2D::~BoxCollider2D()
     {
-        m_Body->DestroyFixture(m_Fixture);
+        //m_Body->DestroyFixture(m_Fixture);
     }
 
     glm::vec2 BoxCollider2D::getDimensions() const
@@ -66,7 +67,7 @@ namespace Artifact
         m_FixtureDefinition.filter.maskBits = a_Mask;
     }
 
-    void BoxCollider2D::attachFixture()
+	void BoxCollider2D::attachFixture()
     {
         if(m_Fixture != nullptr)
         {

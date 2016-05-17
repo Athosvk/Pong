@@ -1,16 +1,16 @@
 #pragma once
 #include <Artifact/Core/GameObject.h>
+#include <Artifact/Rendering/SpriteRenderer.h>
 
 namespace Artifact
 {
-    class SpriteRenderer;
     struct Color;
 }
 
 class Paddle : public Artifact::GameObject
 {
 private:
-    Artifact::SpriteRenderer* m_SpriteRenderer;
+    Artifact::ComponentHandle<Artifact::SpriteRenderer> m_SpriteRenderer;
 public:
     Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem);
 

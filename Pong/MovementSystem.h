@@ -1,8 +1,9 @@
 #pragma once
 #include <Artifact/Core/System.h>
+#include <Artifact/Core/ComponentHandle.h>
 
-class MovementComponent;
-class MovementCircleComponent;
+#include "MovementCircleComponent.h"
+#include "MovementComponent.h"
 
 class MovementSystem : public Artifact::System
 {
@@ -13,7 +14,8 @@ public:
 private:
     void setInitialPositions() const;
     void updatePositions() const;
-    void updatePosition(MovementComponent* a_Movement, MovementCircleComponent* a_Circle) const;
+    void updatePosition(Artifact::ComponentHandle<MovementComponent> a_Movement, 
+		Artifact::ComponentHandle<MovementCircleComponent> a_Circle) const;
 
-    MovementCircleComponent* getMovementCircle() const;
+    Artifact::ComponentHandle<MovementCircleComponent> getMovementCircle() const;
 };
