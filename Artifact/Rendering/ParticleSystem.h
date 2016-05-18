@@ -30,6 +30,6 @@ namespace Artifact
 
 		/// <summary>Integrates the attributes of each particle using their corresponding emitter </summary>
 		void integrateAttributes(ComponentHandle<ParticleEmitter> a_ParticleEmitter) const;
-		void update();
+		float lerp(float a_Value1, float a_Value2, float a_T) const;
 	};
 }

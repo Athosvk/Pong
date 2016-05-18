@@ -29,6 +29,11 @@ namespace Artifact
 		}
 	}
 
+	size_t ParticleEmitter::getFirstInactiveIndex() const
+	{
+		return m_FirstInactive;
+	}
+
 	void ParticleEmitter::deactivate(size_t a_Index)
 	{
 		std::swap(Particles[a_Index], Particles[m_FirstInactive - 1]);

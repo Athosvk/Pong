@@ -24,22 +24,40 @@ namespace Artifact
 
 	void ParticleSystem::render()
 	{
+		m_SpriteBatch.begin(m_EntitySystem.getComponentsOfType<Camera2D>()[0]->getComponent<Transform>()->getMatrix());
+		for(auto particleEmitter : m_EntitySystem.getComponentsOfType<ParticleEmitter>())
+		{
+			for(size_t i = 0; i < particleEmitter->getFirstInactiveIndex(); i++)
+			{
+				auto& particle = particleEmitter->Particles[i];
+				auto position = particleEmitter->getComponent<Transform>()->getPosition();
+				m_SpriteBatch.draw(particleEmitter->Texture, position + particle.RelativePosition,
+					lerp());
+			}
+		}
 	}
 
 	void ParticleSystem::updateParticleSimulations(float a_DeltaTime) const
 	{
 		for(auto particleEmitter : m_EntitySystem.getComponentsOfType<ParticleEmitter>())
 		{
+			particleEmitter->update(a_DeltaTime);
 			integrateAttributes(particleEmitter);
-			
 		}
 	}
 
 	void ParticleSystem::integrateAttributes(ComponentHandle<ParticleEmitter> a_ParticleEmitter) const
 	{
-		for(size_t i = 0; i < a_ParticleEmitter->getFirstInactiveIndex(); i++)
+		for(size_t i = 0; i < a_ParticleEmitter->getFirstInactiveIndex(); ++i)
 		{
-
+			auto& particle = a_ParticleEmitter->Particles[i];
+			float relativeLifeTime = particle.LifeTime / a_ParticleEmitter->MaxLifeTime;
+			particle.RelativePosition += particle.Direction * lerp(a_ParticleEmitter->StartSpeed, a_ParticleEmitter->EndSpeed, relativeLifeTime);
 		}
+	}
+
+	float ParticleSystem::lerp(float a_Value1, float a_Value2, float a_T) const
+	{
+		return a_Value1 + (a_Value2 - a_Value1) * a_T;
 	}
 }
