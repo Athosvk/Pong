@@ -30,9 +30,9 @@ namespace Artifact
 		float m_SpawnTimer = 0.0f;
 	public:
 		/// <summary> The spawn rate of the particles per second </summary>
-		float SpawnInterval = 0.01f;
+		float SpawnInterval = 0.0f;
 		/// <summary> The maximum time in seconds before a particle dies </summary>
-		float MaxLifeTime = 0.3f;
+		float MaxLifeTime = 0.5f;
 		/// <summary> The speed of the particles when they are spawned </summary>
 		float StartSpeed = 0.001f;
 		/// <summary>The speed of the particles when they are nearing the end of lifetime</summary>
@@ -48,7 +48,7 @@ namespace Artifact
 		/// <summary>The time the simluation has been running for this particle emitter </summary>
 		float SimulationTime = 0.0f;
 		/// <summary>The particles</summary>
-		std::vector<Particle> Particles = std::vector<Particle>(4000);
+		std::vector<Particle> Particles = std::vector<Particle>(40000);
 		/// <summary>The texture</summary>
 		GLTexture* Texture = nullptr;
 

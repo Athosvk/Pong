@@ -24,13 +24,16 @@ namespace Artifact
 
 	void ParticleEmitter::update(double a_DeltaTime)
 	{
-		m_SpawnTimer += static_cast<float>(a_DeltaTime);
-		auto spawnCount = static_cast<int>(m_SpawnTimer / SpawnInterval);
-		if(spawnCount > 0)
+		if(SpawnInterval > 0.0f)
 		{
-			spawn(spawnCount);
+			m_SpawnTimer += static_cast<float>(a_DeltaTime);
+			auto spawnCount = static_cast<int>(m_SpawnTimer / SpawnInterval);
+			if(spawnCount > 0)
+			{
+				spawn(spawnCount);
+			}
+			m_SpawnTimer = fmod(m_SpawnTimer, SpawnInterval);
 		}
-		m_SpawnTimer = fmod(m_SpawnTimer, SpawnInterval);
 		for(size_t i = 0; i < m_FirstInactive; ++i)
 		{
 			Particles[i].LifeTime += static_cast<float>(a_DeltaTime);
