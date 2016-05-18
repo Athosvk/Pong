@@ -1,7 +1,6 @@
 #include "ParticleSystem.h"
 #include "RenderMessage.h"
 #include "../Core/World.h"
-#include "ParticleEmitter.h"
 
 namespace Artifact
 {
@@ -56,8 +55,8 @@ namespace Artifact
 		}
 	}
 
-	float ParticleSystem::lerp(float a_Value1, float a_Value2, float a_T) const
+	float ParticleSystem::lerp(Color a_Value1, Color a_Value2, Color a_T) const
 	{
-		return a_Value1 + (a_Value2 - a_Value1) * a_T;
+		return 
 	}
 }

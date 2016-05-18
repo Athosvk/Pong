@@ -33,7 +33,7 @@ namespace Artifact
 		/// <summary> The spawn rate of the particles per second </summary>
 		float SpawnRate;
 		/// <summary> The maximum time in seconds before a particle dies </summary>
-		float MaxLifeTime = 1.0f;		
+		float MaxLifeTime = 10.0f;		
 		/// <summary> The speed of the particles when they are spawned </summary>
 		float StartSpeed = 1.0f;		
 		/// <summary>The speed of the particles when they are nearing the end of lifetime</summary>

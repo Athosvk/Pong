@@ -1,7 +1,7 @@
 #pragma once
 #include "../Core/System.h"
 #include "SpriteBatch.h"
-
+#include "ParticleEmitter.h"
 
 namespace Artifact
 {
@@ -30,6 +30,19 @@ namespace Artifact
 
 		/// <summary>Integrates the attributes of each particle using their corresponding emitter </summary>
 		void integrateAttributes(ComponentHandle<ParticleEmitter> a_ParticleEmitter) const;
-		float lerp(float a_Value1, float a_Value2, float a_T) const;
+
+		template<typename TValueType>
+		TValueType lerp(TValueType a_Value1, TValueType a_Value2, float a_T) const
+		{
+			return a_Value1 + (a_Value2 - a_Value1) * a_T;
+		}
+
+		template<>
+		Color lerp(Color a_Value1, Color a_Value2, float a_T) const
+		{
+			auto result = lerp<glm::vec4>(glm::vec4(a_Value1.r, a_Value1.g, a_Value1.b, a_Value1.a),
+				glm::vec4(a_Value2.r, a_Value2.g, a_Value2.b, a_Value2.a), a_T);
+			return Color(result.x, result.y, result.z, result.w);
+		}
 	};
 }
