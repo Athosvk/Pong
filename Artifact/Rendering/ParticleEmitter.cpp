@@ -18,9 +18,9 @@ namespace Artifact
 		m_FirstInactive = newFirstInactive;
 	}
 
-	void ParticleEmitter::update(float a_DeltaTime)
+	void ParticleEmitter::update(double a_DeltaTime)
 	{
-		SimulationTime += a_DeltaTime;
+		SimulationTime += static_cast<float>(a_DeltaTime);
 		for(size_t i = 0; i < m_FirstInactive; ++i)
 		{
 			if(Particles[i].LifeTime >= MaxLifeTime)

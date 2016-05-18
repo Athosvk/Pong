@@ -31,12 +31,12 @@ namespace Artifact
 				auto& particle = particleEmitter->Particles[i];
 				auto position = particleEmitter->getComponent<Transform>()->getPosition();
 				m_SpriteBatch.draw(particleEmitter->Texture, position + particle.RelativePosition,
-					lerp());
+					lerp(particleEmitter->StartColor, particleEmitter->EndColor, particle.LifeTime));
 			}
 		}
 	}
 
-	void ParticleSystem::updateParticleSimulations(float a_DeltaTime) const
+	void ParticleSystem::updateParticleSimulations(double a_DeltaTime) const
 	{
 		for(auto particleEmitter : m_EntitySystem.getComponentsOfType<ParticleEmitter>())
 		{
@@ -53,10 +53,5 @@ namespace Artifact
 			float relativeLifeTime = particle.LifeTime / a_ParticleEmitter->MaxLifeTime;
 			particle.RelativePosition += particle.Direction * lerp(a_ParticleEmitter->StartSpeed, a_ParticleEmitter->EndSpeed, relativeLifeTime);
 		}
-	}
-
-	float ParticleSystem::lerp(Color a_Value1, Color a_Value2, Color a_T) const
-	{
-		return 
 	}
 }

@@ -62,7 +62,7 @@ namespace Artifact
 		
 		/// <summary>Updates simulation by the specified time</summary>
 		/// <param name="a_DeltaTime">The a_ delta time.</param>
-		void update(float a_DeltaTime);
+		void update(double a_DeltaTime);
 
 		/// <summary>Gets the index of the first inactive particles in the array</summary>
 		/// <returns>The index of the first inactive particle</returns>
