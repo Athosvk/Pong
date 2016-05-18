@@ -17,23 +17,28 @@ namespace Artifact
 		});
 		m_MessagingSystem.registerListener<UpdateMessage>([this](const Message* a_Message)
 		{
+			auto gameTIme = static_cast<const UpdateMessage*>(a_Message)->getGameTime();
 			updateParticleSimulations(static_cast<const UpdateMessage*>(a_Message)->getGameTime().getDeltaTime());
 		});
 	}
 
 	void ParticleSystem::render()
 	{
-		m_SpriteBatch.begin(m_EntitySystem.getComponentsOfType<Camera2D>()[0]->getComponent<Transform>()->getMatrix());
+		m_SpriteBatch.begin(m_EntitySystem.getComponentsOfType<Camera2D>()[0]->getViewProjection());
 		for(auto particleEmitter : m_EntitySystem.getComponentsOfType<ParticleEmitter>())
 		{
-			for(size_t i = 0; i < particleEmitter->getFirstInactiveIndex(); i++)
+			auto position = particleEmitter->getComponent<Transform>()->getPosition();
+			for(size_t i = 0; i < particleEmitter->getFirstInactiveIndex(); ++i)
 			{
 				auto& particle = particleEmitter->Particles[i];
-				auto position = particleEmitter->getComponent<Transform>()->getPosition();
-				m_SpriteBatch.draw(particleEmitter->Texture, position + particle.RelativePosition,
-					lerp(particleEmitter->StartColor, particleEmitter->EndColor, particle.LifeTime));
+				float relativeLifeTime = particle.LifeTime / particleEmitter->MaxLifeTime;
+				float size = lerp(particleEmitter->StartSize, particleEmitter->EndSize, relativeLifeTime);
+				auto destinationRectangle = Artifact::Rectangle(position + particle.RelativePosition - glm::vec2(size / 2, size / 2), size, size);
+				m_SpriteBatch.draw(particleEmitter->Texture, destinationRectangle, 
+					lerp(particleEmitter->StartColor, particleEmitter->EndColor, relativeLifeTime));
 			}
 		}
+		m_SpriteBatch.end();
 	}
 
 	void ParticleSystem::updateParticleSimulations(double a_DeltaTime) const
@@ -51,7 +56,8 @@ namespace Artifact
 		{
 			auto& particle = a_ParticleEmitter->Particles[i];
 			float relativeLifeTime = particle.LifeTime / a_ParticleEmitter->MaxLifeTime;
-			particle.RelativePosition += particle.Direction * lerp(a_ParticleEmitter->StartSpeed, a_ParticleEmitter->EndSpeed, relativeLifeTime);
+			particle.RelativePosition += particle.Direction * lerp(a_ParticleEmitter->StartSpeed, 
+				a_ParticleEmitter->EndSpeed, relativeLifeTime);
 		}
 	}
 }
