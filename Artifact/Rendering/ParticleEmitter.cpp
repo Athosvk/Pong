@@ -2,6 +2,7 @@
 
 #include "ParticleEmitter.h"
 #include "../MathHelper.h"
+#include "../Random.h"
 
 namespace Artifact
 {
@@ -16,6 +17,7 @@ namespace Artifact
 		for(size_t i = m_FirstInactive; i < newFirstInactive; ++i)
 		{
 			Particles[i] = Particle();
+			Particles[i].Direction = glm::normalize(glm::vec2(Random::range(-1.0f, 1.0f), Random::range(-1.0f, 1.0f)));
 		}
 		m_FirstInactive = newFirstInactive;
 	}

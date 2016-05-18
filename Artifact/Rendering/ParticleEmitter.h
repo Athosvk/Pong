@@ -32,11 +32,11 @@ namespace Artifact
 		float m_SpawnTimer = 0.0f;
 	public:
 		/// <summary> The spawn rate of the particles per second </summary>
-		float SpawnInterval = 0.1f;
+		float SpawnInterval = 0.01f;
 		/// <summary> The maximum time in seconds before a particle dies </summary>
-		float MaxLifeTime = 1.f;
+		float MaxLifeTime = 0.3f;
 		/// <summary> The speed of the particles when they are spawned </summary>
-		float StartSpeed = 0.01f;
+		float StartSpeed = 0.001f;
 		/// <summary>The speed of the particles when they are nearing the end of lifetime</summary>
 		float EndSpeed = 0.005f;
 		/// <summary> The color of the particles when they are spawned </summary>
@@ -44,7 +44,7 @@ namespace Artifact
 		/// <summary> The color of the particles when they are at the end of lifetime </summary>
 		Color EndColor = Color(1.0f, 1.0f, 1.0f, 0.0f);
 		/// <summary>The start size</summary>
-		float StartSize = 0.2f;		
+		float StartSize = 0.1f;		
 		/// <summary>The end size</summary>
 		float EndSize = 0.05f;
 		/// <summary>The time the simluation has been running for this particle emitter </summary>
