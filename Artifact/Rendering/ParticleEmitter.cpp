@@ -13,7 +13,7 @@ namespace Artifact
 
 	void ParticleEmitter::spawn(unsigned a_Count)
 	{
-		auto newFirstInactive = static_cast<size_t>(MathHelper::min(s_MaxParticleCount, m_FirstInactive + a_Count));
+		auto newFirstInactive = static_cast<size_t>(MathHelper::min(Particles.size(), m_FirstInactive + a_Count));
 		for(size_t i = m_FirstInactive; i < newFirstInactive; ++i)
 		{
 			Particles[i] = Particle();

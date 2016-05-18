@@ -1,6 +1,6 @@
 #pragma once
 #include <glm/glm.hpp>
-#include <array>
+#include <vector>
 
 #include "../Core/Component.h"
 #include "../Core/GameObject.h"
@@ -25,8 +25,6 @@ namespace Artifact
 			float LifeTime = 0.0f;
 		};
 	private:
-		/// <summary>The maximum amount of particles the emitter can use</summary>
-		static constexpr unsigned s_MaxParticleCount = 2500;
 		/// <summary>The index of the first inactive particle</summary>
 		size_t m_FirstInactive = 0;
 		float m_SpawnTimer = 0.0f;
@@ -44,13 +42,13 @@ namespace Artifact
 		/// <summary> The color of the particles when they are at the end of lifetime </summary>
 		Color EndColor = Color(1.0f, 1.0f, 1.0f, 0.0f);
 		/// <summary>The start size</summary>
-		float StartSize = 0.1f;		
+		float StartSize = 0.1f;
 		/// <summary>The end size</summary>
 		float EndSize = 0.05f;
 		/// <summary>The time the simluation has been running for this particle emitter </summary>
 		float SimulationTime = 0.0f;
 		/// <summary>The particles</summary>
-		std::array<Particle, s_MaxParticleCount> Particles;
+		std::vector<Particle> Particles = std::vector<Particle>(4000);
 		/// <summary>The texture</summary>
 		GLTexture* Texture = nullptr;
 
