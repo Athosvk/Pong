@@ -10,11 +10,12 @@ namespace Artifact
 
 	void ParticleEmitter::spawn(unsigned a_Count)
 	{
-		for(size_t i = m_FirstInactive; i < m_FirstInactive + static_cast<size_t>(a_Count); ++i)
+		auto newFirstInactive = static_cast<size_t>(MathHelper::min(s_MaxParticleCount, m_FirstInactive + a_Count));
+		for(size_t i = m_FirstInactive; i < newFirstInactive; ++i)
 		{
 			Particles[i] = Particle();
 		}
-		m_FirstInactive = static_cast<size_t>(MathHelper::min(s_MaxParticleCount, m_FirstInactive + a_Count));
+		m_FirstInactive = newFirstInactive;
 	}
 
 	void ParticleEmitter::update(float a_DeltaTime)
