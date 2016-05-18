@@ -31,7 +31,8 @@ Paddle::Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
     auto tag = addComponent<TagComponent>();
     tag->Tag = "Paddle";
 	addComponent<ReflectComponent>();
-	addComponent<Artifact::ParticleEmitter>();
+	auto particleEmitter = addComponent<Artifact::ParticleEmitter>();
+	particleEmitter->Texture = Artifact::ResourceManager::getInstance().getTexture("Assets/Textures/Particle.png");
 }
 
 void Paddle::setColor(Artifact::Color a_Color)
