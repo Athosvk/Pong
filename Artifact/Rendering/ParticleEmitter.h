@@ -26,26 +26,31 @@ namespace Artifact
 		};
 	private:
 		/// <summary>The maximum amount of particles the emitter can use</summary>
-		static constexpr unsigned s_MaxParticleCount = 100;
+		static constexpr unsigned s_MaxParticleCount = 2500;
 		/// <summary>The index of the first inactive particle</summary>
 		size_t m_FirstInactive = 0;
+		float m_SpawnTimer = 0.0f;
 	public:
 		/// <summary> The spawn rate of the particles per second </summary>
-		float SpawnRate;
+		float SpawnInterval = 0.1f;
 		/// <summary> The maximum time in seconds before a particle dies </summary>
-		float MaxLifeTime = 10.0f;		
+		float MaxLifeTime = 1.f;
 		/// <summary> The speed of the particles when they are spawned </summary>
-		float StartSpeed = 1.0f;		
+		float StartSpeed = 0.01f;
 		/// <summary>The speed of the particles when they are nearing the end of lifetime</summary>
-		float EndSpeed = 1.0f;
+		float EndSpeed = 0.005f;
 		/// <summary> The color of the particles when they are spawned </summary>
 		Color StartColor = Color::White;
 		/// <summary> The color of the particles when they are at the end of lifetime </summary>
 		Color EndColor = Color(1.0f, 1.0f, 1.0f, 0.0f);
+		/// <summary>The start size</summary>
+		float StartSize = 0.2f;		
+		/// <summary>The end size</summary>
+		float EndSize = 0.05f;
 		/// <summary>The time the simluation has been running for this particle emitter </summary>
-		float SimulationTime;
+		float SimulationTime = 0.0f;
 		/// <summary>The particles</summary>
-		std::array<Particle, s_MaxParticleCount> Particles;		
+		std::array<Particle, s_MaxParticleCount> Particles;
 		/// <summary>The texture</summary>
 		GLTexture* Texture = nullptr;
 
