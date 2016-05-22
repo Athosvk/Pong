@@ -31,15 +31,17 @@ namespace Artifact
 		m_SpriteBatch.begin(m_EntitySystem.getComponentsOfType<Camera2D>()[0]->getViewProjection());
 		for(auto particleEmitter : m_EntitySystem.getComponentsOfType<ParticleEmitter>())
 		{
-			auto position = particleEmitter->getComponent<Transform>()->getPosition();
+			ComponentHandle<Transform> transform = particleEmitter->getComponent<Transform>();
 			for(size_t i = 0; i < particleEmitter->getFirstInactiveIndex(); ++i)
 			{
 				auto& particle = particleEmitter->Particles[i];
 				float relativeLifeTime = particle.LifeTime / particleEmitter->MaxLifeTime;
 				float size = lerp(particleEmitter->StartSize, particleEmitter->EndSize, relativeLifeTime);
-				auto destinationRectangle = Artifact::Rectangle(position + particle.RelativePosition - glm::vec2(size / 2, size / 2), size, size);
-				m_SpriteBatch.draw(particleEmitter->Texture, destinationRectangle, 
-					lerp(particleEmitter->StartColor, particleEmitter->EndColor, relativeLifeTime));
+				auto destinationRectangle = Artifact::Rectangle(transform->getPosition() + 
+					particle.RelativePosition - glm::vec2(size / 2, size / 2), size, size);
+				m_SpriteBatch.draw(particleEmitter->Texture, destinationRectangle, transform->getRotation(),
+					transform->getPosition(), lerp(particleEmitter->StartColor, particleEmitter->EndColor, 
+					relativeLifeTime));
 			}
 		}
 		m_SpriteBatch.end();
