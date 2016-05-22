@@ -1,6 +1,8 @@
 #include "RigidBody2D.h"
 #include "BoxCollider2D.h"
 #include "../Transform.h"
+#include "../MathHelper.h"
+
 
 namespace Artifact
 {
@@ -43,6 +45,6 @@ namespace Artifact
     {
         auto transform = getComponent<Transform>();
         transform->setPosition(glm::vec2(m_Body->GetPosition().x, m_Body->GetPosition().y));
-        transform->setRotation(m_Body->GetAngle());
+        transform->setRotation(MathHelper::toDegrees(m_Body->GetAngle()));
     }
 }

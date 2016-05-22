@@ -3,6 +3,7 @@
 #include "RigidBody2D.h"
 #include "../Game.h"
 #include "../Transform.h"
+#include "../MathHelper.h"
 
 namespace Artifact
 {
@@ -40,7 +41,7 @@ namespace Artifact
     {
         b2BodyDef bodyDefinition;
         bodyDefinition.position.Set(a_Transform->getPosition().x, a_Transform->getPosition().y);
-        bodyDefinition.angle = a_Transform->getRotation();
+        bodyDefinition.angle = MathHelper::toRadians(a_Transform->getRotation());
         bodyDefinition.type = a_BodyType;
 
         return m_World.CreateBody(&bodyDefinition);
