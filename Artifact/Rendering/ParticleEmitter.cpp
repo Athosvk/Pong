@@ -17,7 +17,8 @@ namespace Artifact
 		for(size_t i = m_FirstInactive; i < newFirstInactive; ++i)
 		{
 			Particles[i] = Particle();
-			Particles[i].Direction = glm::normalize(glm::vec2(Random::range(-1.0f, 1.0f), Random::range(-1.0f, 1.0f)));
+			float angle = Random::range(MinAngle, MaxAngle);
+			Particles[i].Direction = MathHelper::directionFromAngle(angle);
 		}
 		m_FirstInactive = newFirstInactive;
 	}

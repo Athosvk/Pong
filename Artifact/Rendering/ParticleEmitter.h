@@ -44,7 +44,11 @@ namespace Artifact
 		/// <summary>The start size</summary>
 		float StartSize = 0.1f;
 		/// <summary>The end size</summary>
-		float EndSize = 0.05f;
+		float EndSize = 0.05f;		
+		/// <summary>The minimum angle the particles are spawned with respect to the emitter </summary>
+		float MinAngle = 0.0f;
+		/// <summary>The maximum angle the particles are spawned with respect to the emitter </summary>
+		float MaxAngle = 180.0f;
 		/// <summary>The time the simluation has been running for this particle emitter </summary>
 		float SimulationTime = 0.0f;
 		/// <summary>The particles</summary>
