@@ -23,6 +23,7 @@ namespace Artifact
 			glm::vec2 Direction = { 1.0f, 0.0f };
 			/// <summary> The life time </summary>
 			float LifeTime = 0.0f;
+			float PreviousLifeTime = 0.0f;
 		};
 	private:
 		/// <summary>The index of the first inactive particle</summary>
@@ -32,23 +33,23 @@ namespace Artifact
 		/// <summary> The spawn rate of the particles per second </summary>
 		float SpawnInterval = 0.0f;
 		/// <summary> The maximum time in seconds before a particle dies </summary>
-		float MaxLifeTime = 0.5f;
+		float MaxLifeTime = 0.25f;
 		/// <summary> The speed of the particles when they are spawned </summary>
-		float StartSpeed = 0.01f;
+		float StartSpeed = 0.03f;
 		/// <summary>The speed of the particles when they are nearing the end of lifetime</summary>
-		float EndSpeed = 0.05f;
+		float EndSpeed = 0.005f;
 		/// <summary> The color of the particles when they are spawned </summary>
-		Color StartColor = Color::White;
+		Color StartColor = Color(1.0f, 1.0f, 1.0f, 1.0f);
 		/// <summary> The color of the particles when they are at the end of lifetime </summary>
-		Color EndColor = Color(1.0f, 1.0f, 1.0f, 0.0f);
+		Color EndColor = Color(1.0f, 1.0f, 0.0f, 0.0f);
 		/// <summary>The start size</summary>
 		float StartSize = 0.1f;
 		/// <summary>The end size</summary>
-		float EndSize = 0.05f;		
+		float EndSize = 0.15f;
 		/// <summary>The minimum angle the particles are spawned with respect to the emitter </summary>
-		float MinAngle = 0.0f;
+		float MinAngle = 180.0f;
 		/// <summary>The maximum angle the particles are spawned with respect to the emitter </summary>
-		float MaxAngle = 180.0f;
+		float MaxAngle = 360.0f;
 		/// <summary>The time the simluation has been running for this particle emitter </summary>
 		float SimulationTime = 0.0f;
 		/// <summary>The particles</summary>

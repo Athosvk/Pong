@@ -36,7 +36,7 @@ void ReflectSystem::onReflectComponentAdded(Artifact::ComponentHandle<ReflectCom
 		if(tag != nullptr && tag->Tag == "Ball")
 		{
 			reflect(tag->getComponent<Artifact::RigidBody2D>());
-			message->getCollider()->getComponent<Artifact::ParticleEmitter>()->spawn(100);
+			message->getCollider()->getComponent<Artifact::ParticleEmitter>()->spawn(400);
 		}
 	}, a_ReflectComponent->getGameObject());
 }
