@@ -2,11 +2,6 @@
 #include <Artifact/Core/GameObject.h>
 #include <Artifact/Rendering/SpriteRenderer.h>
 
-namespace Artifact
-{
-    struct Color;
-}
-
 class Paddle : public Artifact::GameObject
 {
 private:

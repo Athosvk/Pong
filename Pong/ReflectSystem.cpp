@@ -2,6 +2,7 @@
 #include <Artifact/Physics/BoxCollider2D.h>
 #include <Artifact/Physics/RigidBody2D.h>
 #include <Artifact/Core/EntitySystem.h>
+#include <Artifact/Rendering/ParticleEmitter.h>
 
 #include "ReflectSystem.h"
 #include "TagComponent.h"
@@ -30,11 +31,12 @@ void ReflectSystem::onReflectComponentAdded(Artifact::ComponentHandle<ReflectCom
 {
 	m_MessagingSystem.registerListener<Artifact::TriggerEnter2DMessage>([this](const Artifact::Message* a_Message)
 	{
-		Artifact::ComponentHandle<TagComponent> tag = static_cast<const Artifact::TriggerEnter2DMessage*>(a_Message)->
-			getOther()->getComponent<TagComponent>();
+		const Artifact::TriggerEnter2DMessage* message = static_cast<const Artifact::TriggerEnter2DMessage*>(a_Message);
+		Artifact::ComponentHandle<TagComponent> tag = message->getOther()->getComponent<TagComponent>();
 		if(tag != nullptr && tag->Tag == "Ball")
 		{
 			reflect(tag->getComponent<Artifact::RigidBody2D>());
+			message->getCollider()->getComponent<Artifact::ParticleEmitter>()->spawn(400);
 		}
 	}, a_ReflectComponent->getGameObject());
 }

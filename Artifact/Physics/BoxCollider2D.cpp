@@ -4,6 +4,7 @@
 #include "../Rendering/SpriteRenderer.h"
 #include "../Transform.h"
 #include "../Core/EntitySystem.h"
+#include "../MathHelper.h"
 
 namespace Artifact
 {
@@ -94,6 +95,7 @@ namespace Artifact
             refreshFixtureData();
         }
         auto transform = getComponent<Transform>();
-        m_Body->SetTransform(b2Vec2(transform->getPosition().x, transform->getPosition().y), transform->getRotation());
+        m_Body->SetTransform(b2Vec2(transform->getPosition().x, transform->getPosition().y), 
+			MathHelper::toRadians(transform->getRotation()));
     }
 }
