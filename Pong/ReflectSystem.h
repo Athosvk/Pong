@@ -1,9 +1,13 @@
 #pragma once
 #include <Artifact/Core/System.h>
 #include <Artifact/Core/ComponentHandle.h>
-#include <Artifact/Physics/RigidBody2D.h>
 
-#include "ReflectComponent.h"
+namespace Artifact
+{
+	class BoxCollider2D;
+}
+
+class ReflectComponent;
 
 class ReflectSystem : public Artifact::System
 {
@@ -12,6 +16,7 @@ public:
 
 	virtual void registerListeners() override;
 private:
-	void reflect(Artifact::ComponentHandle<Artifact::RigidBody2D> a_RigidBody);
+	void reflect(Artifact::ComponentHandle<ReflectComponent> a_Reflecter, 
+		Artifact::ComponentHandle<Artifact::BoxCollider2D> a_Ball);
 	void onReflectComponentAdded(Artifact::ComponentHandle<ReflectComponent> a_ReflectComponent);
 };

@@ -3,6 +3,8 @@
 #include <Artifact/Physics/RigidBody2D.h>
 #include <Artifact/Core/EntitySystem.h>
 #include <Artifact/Rendering/ParticleEmitter.h>
+#include <Artifact/MathHelper.h>
+#include <Artifact/Transform.h>
 
 #include "ReflectSystem.h"
 #include "TagComponent.h"
@@ -22,21 +24,32 @@ void ReflectSystem::registerListeners()
 	});
 }
 
-void ReflectSystem::reflect(Artifact::ComponentHandle<Artifact::RigidBody2D> a_RigidBody)
+void ReflectSystem::reflect(Artifact::ComponentHandle<ReflectComponent> a_Reflecter, 
+	Artifact::ComponentHandle<Artifact::BoxCollider2D> a_Ball)
 {
-	a_RigidBody->setVelocity(a_RigidBody->getVelocity() * -1.05f);
+	auto reflecterTransform = a_Reflecter->getComponent<Artifact::Transform>();
+	auto reflecterNormal = Artifact::MathHelper::rotate(a_Reflecter->Normal,
+		reflecterTransform->getRotation(), glm::vec2(0.0f));
+	auto rigidBody = a_Ball->getComponent<Artifact::RigidBody2D>();
+	auto velocity = rigidBody->getVelocity();
+	float speed = static_cast<float>(glm::length(velocity));
+	velocity = glm::normalize(velocity) * -1.0f;
+	auto angle = Artifact::MathHelper::getSignedAngle(velocity, reflecterNormal);
+	rigidBody->setVelocity(Artifact::MathHelper::rotate(velocity, angle * 2, glm::vec2(0.0f))
+		* speed * 1.3f);
+	a_Reflecter->getComponent<Artifact::ParticleEmitter>()->spawn(400);
 }
 
 void ReflectSystem::onReflectComponentAdded(Artifact::ComponentHandle<ReflectComponent> a_ReflectComponent)
 {
-	m_MessagingSystem.registerListener<Artifact::TriggerEnter2DMessage>([this](const Artifact::Message* a_Message)
+	m_MessagingSystem.registerListener<Artifact::TriggerEnter2DMessage>([this, a_ReflectComponent]
+		(const Artifact::Message* a_Message)
 	{
 		const Artifact::TriggerEnter2DMessage* message = static_cast<const Artifact::TriggerEnter2DMessage*>(a_Message);
 		Artifact::ComponentHandle<TagComponent> tag = message->getOther()->getComponent<TagComponent>();
 		if(tag != nullptr && tag->Tag == "Ball")
 		{
-			reflect(tag->getComponent<Artifact::RigidBody2D>());
-			message->getCollider()->getComponent<Artifact::ParticleEmitter>()->spawn(400);
+			reflect(message->getCollider()->getComponent<ReflectComponent>(), message->getOther());
 		}
 	}, a_ReflectComponent->getGameObject());
 }
