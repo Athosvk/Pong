@@ -54,7 +54,6 @@ void DebugPanelSystem::drawPanel(Artifact::ComponentHandle<DebugPanelComponent> 
 			text += "\n";
 		}
 	}
-	a_DebugPanel->getComponent<Artifact::SpriteRenderer>()->Height = emitterIndex * 1.3f;
 	a_DebugPanel->getText()->Text = text;
 }
 
