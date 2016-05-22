@@ -34,9 +34,9 @@ namespace Artifact
 		/// <summary> The maximum time in seconds before a particle dies </summary>
 		float MaxLifeTime = 0.5f;
 		/// <summary> The speed of the particles when they are spawned </summary>
-		float StartSpeed = 0.001f;
+		float StartSpeed = 0.01f;
 		/// <summary>The speed of the particles when they are nearing the end of lifetime</summary>
-		float EndSpeed = 0.005f;
+		float EndSpeed = 0.05f;
 		/// <summary> The color of the particles when they are spawned </summary>
 		Color StartColor = Color::White;
 		/// <summary> The color of the particles when they are at the end of lifetime </summary>

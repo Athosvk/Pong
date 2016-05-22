@@ -25,11 +25,11 @@ namespace Artifact
 		void render();
 		
 		/// <summary>Updates the particle simulations</summary>
-		/// <param name="a_DeltaTime">The tiem since hte last update</param>
+		/// <param name="a_DeltaTime">The time since the last update</param>
 		void updateParticleSimulations(double a_DeltaTime) const;
 
 		/// <summary>Integrates the attributes of each particle using their corresponding emitter </summary>
-		void integrateAttributes(ComponentHandle<ParticleEmitter> a_ParticleEmitter) const;
+		void integrateAttributes() const;
 
 		template<typename TValueType>
 		TValueType lerp(TValueType a_Value1, TValueType a_Value2, float a_T) const

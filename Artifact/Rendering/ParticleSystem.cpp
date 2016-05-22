@@ -17,8 +17,12 @@ namespace Artifact
 		});
 		m_MessagingSystem.registerListener<UpdateMessage>([this](const Message* a_Message)
 		{
-			auto gameTIme = static_cast<const UpdateMessage*>(a_Message)->getGameTime();
-			updateParticleSimulations(static_cast<const UpdateMessage*>(a_Message)->getGameTime().getDeltaTime());
+			updateParticleSimulations(static_cast<const UpdateMessage*>(a_Message)->
+				getGameTime().getDeltaTime());
+		});
+		m_MessagingSystem.registerListener<FixedUpdateMessage>([this](const Message* a_Message)
+		{
+			integrateAttributes();
 		});
 	}
 
@@ -46,18 +50,20 @@ namespace Artifact
 		for(auto particleEmitter : m_EntitySystem.getComponentsOfType<ParticleEmitter>())
 		{
 			particleEmitter->update(a_DeltaTime);
-			integrateAttributes(particleEmitter);
 		}
 	}
 
-	void ParticleSystem::integrateAttributes(ComponentHandle<ParticleEmitter> a_ParticleEmitter) const
+	void ParticleSystem::integrateAttributes() const
 	{
-		for(size_t i = 0; i < a_ParticleEmitter->getFirstInactiveIndex(); ++i)
+		for(auto particleEmitter : m_EntitySystem.getComponentsOfType<ParticleEmitter>())
 		{
-			auto& particle = a_ParticleEmitter->Particles[i];
-			float relativeLifeTime = particle.LifeTime / a_ParticleEmitter->MaxLifeTime;
-			particle.RelativePosition += particle.Direction * lerp(a_ParticleEmitter->StartSpeed, 
-				a_ParticleEmitter->EndSpeed, relativeLifeTime);
+			for(size_t i = 0; i < particleEmitter->getFirstInactiveIndex(); ++i)
+			{
+				auto& particle = particleEmitter->Particles[i];
+				float relativeLifeTime = particle.LifeTime / particleEmitter->MaxLifeTime;
+				particle.RelativePosition += particle.Direction * lerp(particleEmitter->StartSpeed,
+					particleEmitter->EndSpeed, relativeLifeTime);
+			}
 		}
 	}
 }
