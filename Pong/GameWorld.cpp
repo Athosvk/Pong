@@ -1,5 +1,7 @@
 #include <Artifact/Color.h>
 #include <Artifact/Transform.h>
+#include <Artifact/Rendering/TextComponent.h>
+#include <Artifact/IO/ResourceManager.h>
 
 #include "GameWorld.h"
 #include "MovementSystem.h"
@@ -9,6 +11,8 @@
 #include "MovementCircleComponent.h"
 #include "Ball.h"
 #include "ReflectSystem.h"
+#include "DebugPanelSystem.h"
+#include "DebugPanelComponent.h"
 
 GameWorld::GameWorld(Artifact::GameTime& a_GameTime, Artifact::Game* a_CurrentGame)
     : World(a_GameTime, a_CurrentGame)
@@ -16,11 +20,18 @@ GameWorld::GameWorld(Artifact::GameTime& a_GameTime, Artifact::Game* a_CurrentGa
     addSystem<PlayerInputSystem>();
     addSystem<MovementSystem>();
 	addSystem<ReflectSystem>();
+	addSystem<DebugPanelSystem>();
     initialisePlayers();
 
     auto movementCircle = m_EntitySystem.createEntity().addComponent<MovementCircleComponent>();
     movementCircle->Radius = 3.0f;
     m_EntitySystem.createEntity<Ball>();
+	auto debugPanel = m_EntitySystem.createEntity();
+	auto panelComponent = debugPanel.addComponent<DebugPanelComponent>();
+	panelComponent->getText()->Font = Artifact::ResourceManager::getInstance().
+		getFont("Assets/Fonts/Helvetica Bold.ttf");
+	panelComponent->getText()->Scaling = 0.2f;
+	debugPanel.getComponent<Artifact::Transform>()->setPosition(glm::vec2(-5.f, 3.8f));
 }
 
 void GameWorld::initialisePlayers()

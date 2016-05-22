@@ -160,6 +160,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="DebugPanelSystem.cpp" />
+    <ClCompile Include="DebugPanelComponent.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainGame.cpp" />
@@ -175,6 +177,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="DebugPanelSystem.h" />
+    <ClInclude Include="DebugPanelComponent.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MovementCircleComponent.h" />
