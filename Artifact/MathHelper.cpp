@@ -1,5 +1,6 @@
 #include <math.h>
 #include <glm/gtc/constants.hpp>
+#include <glm/gtx/vector_angle.hpp>
 
 #include "MathHelper.h"
 
@@ -21,7 +22,7 @@ namespace Artifact
     glm::vec2 MathHelper::rotate(glm::vec2 a_Vector, float a_Degrees, glm::vec2 a_Origin)
     {
         glm::vec2 rotatedVector;
-        auto angleRadians = glm::radians<float>(a_Degrees);
+        auto angleRadians = toRadians(a_Degrees);
         auto sinAngle = glm::sin(angleRadians);
         auto cosAngle = glm::cos(angleRadians);
 
@@ -30,6 +31,11 @@ namespace Artifact
 
         return rotatedVector;
     }
+
+	float MathHelper::getSignedAngle(glm::vec2 a_Vector1, glm::vec2 a_Vector2)
+	{
+		return glm::degrees(glm::orientedAngle(a_Vector1, a_Vector2));
+	}
 
     float MathHelper::pingPong(float a_Value, float a_Min, float a_Max)
     {

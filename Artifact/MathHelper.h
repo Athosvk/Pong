@@ -50,7 +50,12 @@ namespace Artifact
 				"Return type must be integral or floating point");
 			return glm::degrees(a_Radians);
 		}
-
+	
+		/// <summary>Gets the angle between two normalized vectors</summary>
+		/// <param name="a_Vector1">The first vector</param>
+		/// <param name="a_Vector2">The other vector</param>
+		/// <returns>The signed angle in degrees between both vectors</returns>
+		static float getSignedAngle(glm::vec2 a_Vector1, glm::vec2 a_Vector2);
         static glm::vec2 rotate(glm::vec2 a_Vector, float a_Degrees, glm::vec2 a_Origin);
         static glm::vec2 directionFromAngle(float a_Degrees);
         static float directionToAngle(glm::vec2 a_NormalizedDirection);
