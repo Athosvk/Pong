@@ -32,11 +32,11 @@ void ReflectSystem::reflect(Artifact::ComponentHandle<ReflectComponent> a_Reflec
 		reflecterTransform->getRotation(), glm::vec2(0.0f));
 	auto rigidBody = a_Ball->getComponent<Artifact::RigidBody2D>();
 	auto velocity = rigidBody->getVelocity();
-	float speed = static_cast<float>(glm::length(velocity));
+	float speed = static_cast<float>(glm::length(velocity)) * a_Reflecter->SpeedCoefficient;
 	velocity = glm::normalize(velocity) * -1.0f;
 	auto angle = Artifact::MathHelper::getSignedAngle(velocity, reflecterNormal);
 	rigidBody->setVelocity(Artifact::MathHelper::rotate(velocity, angle * 2, glm::vec2(0.0f))
-		* speed * 1.3f);
+		* speed);
 	a_Reflecter->getComponent<Artifact::ParticleEmitter>()->spawn(400);
 }
 
