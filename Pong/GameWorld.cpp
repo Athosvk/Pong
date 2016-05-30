@@ -42,6 +42,7 @@ void GameWorld::initialisePlayers()
     auto bluePaddle = m_EntitySystem.createEntity<Paddle>();
     bluePaddle.setColor(Artifact::Color::Blue);
     auto bluePaddleInput = bluePaddle.getComponent<PlayerInputComponent>();
+	bluePaddle.getComponent<MovementComponent>()->Angle = 180.0f;
     bluePaddleInput->MoveLeftKey = Artifact::KeyCode::A;
     bluePaddleInput->MoveRightKey = Artifact::KeyCode::D;
 }

@@ -3,7 +3,6 @@
 #include "../Core/EntitySystem.h"
 #include "TextComponent.h"
 #include "../Transform.h"
-#include "SpriteRenderer.h"
 
 namespace Artifact
 {
