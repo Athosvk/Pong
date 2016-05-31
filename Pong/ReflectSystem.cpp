@@ -5,6 +5,7 @@
 #include <Artifact/Rendering/ParticleEmitter.h>
 #include <Artifact/MathHelper.h>
 #include <Artifact/Transform.h>
+#include <Artifact/Rendering/SpriteRenderer.h>
 
 #include "ReflectSystem.h"
 #include "TagComponent.h"
@@ -38,6 +39,10 @@ void ReflectSystem::reflect(Artifact::ComponentHandle<ReflectComponent> a_Reflec
 	rigidBody->setVelocity(Artifact::MathHelper::rotate(velocity, angle * 2, glm::vec2(0.0f))
 		* speed);
 	a_Reflecter->getComponent<Artifact::ParticleEmitter>()->spawn(400);
+	if(!(a_Reflecter->ReflectColor == Artifact::Color::White))
+	{
+		a_Ball->getComponent<Artifact::SpriteRenderer>()->Color = a_Reflecter->ReflectColor;
+	}
 }
 
 void ReflectSystem::onReflectComponentAdded(Artifact::ComponentHandle<ReflectComponent> a_ReflectComponent)
@@ -49,7 +54,12 @@ void ReflectSystem::onReflectComponentAdded(Artifact::ComponentHandle<ReflectCom
 		Artifact::ComponentHandle<TagComponent> tag = message->getOther()->getComponent<TagComponent>();
 		if(tag != nullptr && tag->Tag == "Ball")
 		{
-			reflect(message->getCollider()->getComponent<ReflectComponent>(), message->getOther());
+			auto reflecter = message->getCollider()->getComponent<ReflectComponent>();
+			if(!(tag->getComponent<Artifact::SpriteRenderer>()->Color == reflecter->ReflectColor)
+				|| tag->getComponent<Artifact::SpriteRenderer>()->Color == Artifact::Color::White)
+			{
+				reflect(reflecter, message->getOther());
+			}
 		}
 	}, a_ReflectComponent->getGameObject());
 }

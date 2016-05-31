@@ -10,6 +10,7 @@
 #include "../MovementComponent.h"
 #include "../TagComponent.h"
 #include "../ReflectComponent.h"
+#include "../ScoreComponent.h"
 
 Paddle::Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
     : GameObject(a_ID, a_EntitySystem),
@@ -33,9 +34,13 @@ Paddle::Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
 	addComponent<ReflectComponent>();
 	auto particleEmitter = addComponent<Artifact::ParticleEmitter>();
 	particleEmitter->Texture = Artifact::ResourceManager::getInstance().getTexture("Assets/Textures/Particle.png");
+
+	addComponent<ScoreComponent>();
 }
 
 void Paddle::setColor(Artifact::Color a_Color)
 {
-    m_SpriteRenderer->Color = a_Color;
+	m_SpriteRenderer->Color = a_Color;
+	getComponent<ReflectComponent>()->ReflectColor = a_Color;
+	getComponent<ScoreComponent>()->TeamColor = a_Color;
 }

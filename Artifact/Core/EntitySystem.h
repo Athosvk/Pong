@@ -73,9 +73,9 @@ namespace Artifact
         ComponentHandle<TComponentType> addComponent(GameObject& a_GameObject)
         {
 			ComponentHandle<TComponentType> componentHandle = m_ComponentMapper.addComponent<TComponentType>(a_GameObject);
-            m_MessagingSystem.broadcast<ComponentAddedMessage<TComponentType>>(componentHandle);
 			auto result = m_EntityStates.at(a_GameObject.getID()).
 				ComponentHandles.emplace(typeid(TComponentType), std::make_unique<ComponentHandle<TComponentType>>(componentHandle));
+			m_MessagingSystem.broadcast<ComponentAddedMessage<TComponentType>>(componentHandle);
             return *static_cast<ComponentHandle<TComponentType>*>(result.first->second.get());
         }
 

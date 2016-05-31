@@ -24,6 +24,8 @@ namespace Artifact
     public:
         Color(float a_RedValue, float a_GreenValue, float a_BlueValue, float a_AlphaValue = 1);
         Color();
+
+		bool operator ==(const Color& a_Color);
         
         static Color createFromRGBAValue(uint64_t a_Value);
     };
