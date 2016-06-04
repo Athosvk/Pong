@@ -12,7 +12,6 @@ public:
 
     virtual void registerListeners();
 private:
-    void setInitialPositions() const;
     void updatePositions() const;
     void updatePosition(Artifact::ComponentHandle<MovementComponent> a_Movement, 
 		Artifact::ComponentHandle<MovementCircleComponent> a_Circle) const;

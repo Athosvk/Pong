@@ -23,6 +23,11 @@ namespace Artifact
     {
     }
 
+	bool Color::operator==(const Color& a_Other)
+	{
+		return a_Other.r == r && a_Other.g == g && a_Other.b == b && a_Other.a == a;
+	}
+
     Color Color::createFromRGBAValue(uint64_t a_Value)
     {
         auto newColor = Color();

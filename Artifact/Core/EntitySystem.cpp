@@ -24,7 +24,7 @@ namespace Artifact
     }
 
     EntitySystem::EntitySystem(MessagingSystem& a_MessagingSystem)
-        : m_MessagingSystem(a_MessagingSystem)
+        : m_MessagingSystem(a_MessagingSystem) 
     {
     }
 

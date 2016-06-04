@@ -50,6 +50,39 @@ namespace Artifact
 				"Return type must be integral or floating point");
 			return glm::degrees(a_Radians);
 		}
+
+		/// <summary> Returns the given floating point rounded to the nearest integer</summary>
+		/// <param name="a_Value">The value to round</param>
+		/// <param name="a_Decimals">The value to round</param>
+		/// <returns>The value rounded to the nearest integer</returns>
+		template<typename TValueType>
+		static TValueType round(TValueType a_Value, unsigned a_Decimals)
+		{
+			static_assert(std::is_floating_point<TValueType>::value,
+				"Can only round floating point numbers");
+			TValueType roundedValue;
+			if(a_Decimals > 0)
+			{
+				auto multiplier = std::pow(10, a_Decimals);
+				roundedValue = static_cast<TValueType>(std::round(a_Value * multiplier) / multiplier);
+			}
+			else
+			{
+				roundedValue = static_cast<TValueType>(std::round(a_Value));
+			}
+			return roundedValue;
+		}
+
+		/// <summary> Returns the given floating point rounded to the nearest integer</summary>
+		/// <param name="a_Value">The value to round</param>
+		/// <returns>The value rounded to the nearest integer</returns>
+		template<typename TValueType>
+		static TValueType round(TValueType a_Value)
+		{
+			static_assert(std::is_floating_point<TValueType>::value,
+				"Can only round floating point numbers");
+			return std::round(a_Value);
+		}
 	
 		/// <summary>Gets the angle between two normalized vectors</summary>
 		/// <param name="a_Vector1">The first vector</param>

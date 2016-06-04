@@ -14,25 +14,10 @@ MovementSystem::MovementSystem(Artifact::EntitySystem& a_EntitySystem,
 
 void MovementSystem::registerListeners()
 {
-    m_MessagingSystem.registerListener<Artifact::AwakeMessage>([this](const Artifact::Message*)
-    {
-        setInitialPositions();
-    });
     m_MessagingSystem.registerListener<Artifact::FixedUpdateMessage>([this](const Artifact::Message*)
     {
         updatePositions();
     });
-}
-
-void MovementSystem::setInitialPositions() const
-{
-    auto movementCircle = getMovementCircle();
-    for(auto movementComponent : m_EntitySystem.getComponentsOfType<MovementComponent>())
-    {
-        auto transform = movementComponent->getComponent<Artifact::Transform>();
-        transform->setPosition(movementCircle->getComponent<Artifact::Transform>()->getPosition()
-            + glm::vec2(0.0f, 1.0f) * movementCircle->Radius);
-    }
 }
 
 void MovementSystem::updatePositions() const
@@ -41,10 +26,7 @@ void MovementSystem::updatePositions() const
 
     for(auto movementComponent : m_EntitySystem.getComponentsOfType<MovementComponent>())
     {
-        if(movementComponent->Direction != MovementComponent::EDirection::None)
-        {
-            updatePosition(movementComponent, movementCircle);
-        }
+         updatePosition(movementComponent, movementCircle);
     }
 }
 
@@ -52,11 +34,12 @@ void MovementSystem::updatePosition(Artifact::ComponentHandle<MovementComponent>
 	Artifact::ComponentHandle<MovementCircleComponent> a_Circle) const
 {
     auto transform = a_Movement->getComponent<Artifact::Transform>();
-    auto angularDisplacement = static_cast<float>(a_Movement->Direction) * a_Movement->Speed;
-    auto position = Artifact::MathHelper::rotate(transform->getPosition(), angularDisplacement,
+    auto angularDisplacement = static_cast<float>(a_Movement->Direction) * a_Movement->Speed + a_Movement->Angle;
+	a_Movement->Angle = angularDisplacement;
+    auto position = Artifact::MathHelper::rotate(glm::vec2(a_Circle->Radius, 0.0f), angularDisplacement,
         a_Circle->getComponent<Artifact::Transform>()->getPosition());
     transform->setPosition(position);
-    transform->setRotation(transform->getRotation() + angularDisplacement);
+    transform->setRotation(angularDisplacement - 90.0f);
 }
 
 Artifact::ComponentHandle<MovementCircleComponent> MovementSystem::getMovementCircle() const

@@ -160,6 +160,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Boundary.cpp" />
+    <ClCompile Include="BoundsComponent.cpp" />
+    <ClCompile Include="DebugPanelSystem.cpp" />
+    <ClCompile Include="DebugPanelComponent.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainGame.cpp" />
@@ -171,10 +175,18 @@
     <ClCompile Include="Paddle\PlayerInputSystem.cpp" />
     <ClCompile Include="ReflectComponent.cpp" />
     <ClCompile Include="ReflectSystem.cpp" />
+    <ClCompile Include="ScoreComponent.cpp" />
+    <ClCompile Include="ScoreDisplayComponent.cpp" />
+    <ClCompile Include="ScoreDisplaySystem.cpp" />
+    <ClCompile Include="ScoringSystem.cpp" />
     <ClCompile Include="TagComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="Boundary.h" />
+    <ClInclude Include="BoundsComponent.h" />
+    <ClInclude Include="DebugPanelSystem.h" />
+    <ClInclude Include="DebugPanelComponent.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MovementCircleComponent.h" />
@@ -185,6 +197,10 @@
     <ClInclude Include="Paddle\PlayerInputSystem.h" />
     <ClInclude Include="ReflectComponent.h" />
     <ClInclude Include="ReflectSystem.h" />
+    <ClInclude Include="ScoreComponent.h" />
+    <ClInclude Include="ScoreDisplayComponent.h" />
+    <ClInclude Include="ScoreDisplaySystem.h" />
+    <ClInclude Include="ScoringSystem.h" />
     <ClInclude Include="TagComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

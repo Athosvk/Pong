@@ -11,6 +11,7 @@ public:
         None = 0,
         Right = 1
     } Direction = EDirection::None;
+	float Angle = 0.0f;
 
 public:
     MovementComponent(Artifact::GameObject a_Entity);
