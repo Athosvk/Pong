@@ -11,6 +11,6 @@ Boundary::Boundary(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
 {
 	addComponent<BoundsComponent>();
 	auto boxCollider = addComponent<Artifact::BoxCollider2D>();
-	boxCollider->setDimensions(glm::vec2(8.0f, 0.1f));
+	boxCollider->setDimensions(glm::vec2(10.0f, 0.2f));
 	boxCollider->enableTriggerState();
 }
