@@ -1,6 +1,8 @@
 #pragma once
-#include <Artifact/Core/Component.h>
 #include <glm/glm.hpp>
+
+#include <Artifact/Color.h>
+#include <Artifact/Core/Component.h>
 
 class ReflectComponent : public Artifact::Component
 {

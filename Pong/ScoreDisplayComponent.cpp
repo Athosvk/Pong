@@ -9,8 +9,7 @@ ScoreDisplayComponent::ScoreDisplayComponent(Artifact::GameObject a_GameObject)
 	Text(addComponent<Artifact::TextComponent>())
 {
 	Text->Text = std::to_string(0);
-	Text->Font = Artifact::ResourceManager::getInstance().
-		getFont("Assets/Fonts/Helvetica Bold.ttf");
+	Text->Font = Artifact::ResourceManager::getFont("Assets/Fonts/Helvetica Bold.ttf");
 	Text->Color = Artifact::Color::White;
 	Text->Depth = 1;
 	Text->Scaling = 0.35f;

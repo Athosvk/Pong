@@ -19,7 +19,7 @@ Paddle::Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
     addComponent<PlayerInputComponent>();
     addComponent<MovementComponent>();
 
-    m_SpriteRenderer->setTexture(Artifact::ResourceManager::getInstance().getTexture("Assets/Textures/Paddle.png"));
+    m_SpriteRenderer->setTexture(Artifact::ResourceManager::getTexture("Assets/Textures/Paddle.png"));
     m_SpriteRenderer->Width = 1.0f;
     m_SpriteRenderer->Height = 0.2f;
 
@@ -33,7 +33,7 @@ Paddle::Paddle(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
     tag->Tag = "Paddle";
 	addComponent<ReflectComponent>();
 	auto particleEmitter = addComponent<Artifact::ParticleEmitter>();
-	particleEmitter->Texture = Artifact::ResourceManager::getInstance().getTexture("Assets/Textures/Particle.png");
+	particleEmitter->Texture = Artifact::ResourceManager::getTexture("Assets/Textures/Particle.png");
 
 	addComponent<ScoreComponent>();
 }

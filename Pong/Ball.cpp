@@ -26,5 +26,5 @@ Ball::Ball(unsigned a_ID, Artifact::EntitySystem& a_EntitySystem)
     auto spriteRenderer = addComponent<Artifact::SpriteRenderer>();
     spriteRenderer->Width = Dimensions.x;
     spriteRenderer->Height = Dimensions.y;
-    spriteRenderer->setTexture(Artifact::ResourceManager::getInstance().getTexture("Assets/Textures/Paddle.png"));
+    spriteRenderer->setTexture(Artifact::ResourceManager::getTexture("Assets/Textures/Paddle.png"));
 }

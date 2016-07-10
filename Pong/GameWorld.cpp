@@ -34,8 +34,7 @@ GameWorld::GameWorld(Artifact::GameTime& a_GameTime, Artifact::Game* a_CurrentGa
     m_EntitySystem.createEntity<Ball>();
 	auto debugPanel = m_EntitySystem.createEntity();
 	auto panelComponent = debugPanel.addComponent<DebugPanelComponent>();
-	panelComponent->getText()->Font = Artifact::ResourceManager::getInstance().
-		getFont("Assets/Fonts/Helvetica Bold.ttf");
+	panelComponent->getText()->Font = Artifact::ResourceManager::getFont("Assets/Fonts/Helvetica Bold.ttf");
 	panelComponent->getText()->Scaling = 0.2f;
 	debugPanel.getComponent<Artifact::Transform>()->setPosition(glm::vec2(-5.f, 3.8f));
 
