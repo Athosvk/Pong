@@ -1,0 +1,3 @@
+[submodule "Artifact"]
+	path = Artifact
+	url = git@github.com:Athosvk/Artifact.git
